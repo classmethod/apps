@@ -47,7 +47,8 @@ const FIELDS_TO_PERSIST = [
 function makeThumbnail(resource, config) {
   const cloudinary = new cloudinaryCore({
     cloud_name: config.cloudName,
-    api_key: config.apiKey
+    api_key: config.apiKey,
+    api_secret: config.apiSecret
   });
 
   let url;
@@ -88,6 +89,7 @@ function renderDialog(sdk) {
   const options = {
     cloud_name: config.cloudName,
     api_key: config.apiKey,
+    api_secret: config.apiSecret,
     max_files: config.maxFiles,
     multiple: config.maxFiles > 1,
     inline_container: '#root',
@@ -189,6 +191,13 @@ setup({
       "description": "The Cloduinary API Key that can be found in your Cloudinary console.",
       "type": "Symbol",
       "required": true
+    },
+    {
+      "id": "apiSecret",
+      "name": "API secret",
+      "description": "The Cloduinary API Secret that can be found in your Cloudinary console. If you enter this field, you can access Cloudinary's media library without individual login. ",
+      "type": "Symbol",
+      "required": false
     },
     {
       "id": "maxFiles",
